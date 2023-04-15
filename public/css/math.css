@@ -1,0 +1,50 @@
+body{
+    background-color: rgb(255, 240, 248);
+}
+
+label
+{
+    position:absolute;
+    left:450px;
+    color:green;
+    font-size:larger;
+}
+
+input
+{
+    position:absolute;
+    left:550px;
+    color:green;
+    width:50;
+    font-size:large;
+}
+
+#op
+{
+    position:absolute;
+    top:50px;
+    left:500px;
+    color:green;
+    width:200;
+    font-size:large;
+}
+
+#select
+{
+    position:absolute;
+    top:100px;
+    left:550px;
+    color:green;
+    width:100;
+    font-size:large;
+}
+
+#submit
+{
+    position:absolute;
+    top:150px;
+    left:550px;
+    color:green;
+    width:100;
+    font-size:large;
+}

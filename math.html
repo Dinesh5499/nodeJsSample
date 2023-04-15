@@ -1,0 +1,114 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="css/math.css" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<input list="chapter" id="op"><br>
+<datalist id="chapter"> 
+  <option value="addition">addition</option>;
+  <option value="subtraction">subtraction</option>;
+</datalist>
+<label style="top:1x;left:500px">Select the type of test</label>
+<label style="top:1x;left:1000px">Max value</label>
+<input type="text" style="top:50px;left:1000px" id="max" value="100"> 
+<button id="select"> select </button><br>
+<button id="submit"> submit </button><br>
+<div id="dyn">
+</div>
+<form>
+</form>
+<script>
+var q1= new Array(100);
+var q2= new Array(100);
+var questionobj=new Array(100);
+var answerobj= new Array(100);
+var resultobj=new Array(100);
+var question_top=200;  
+var answer_top=200;
+var option;
+var temp;
+for(i=0;i<10;i++)
+{
+  questionobj[i] = document.createElement("label");
+  answerobj[i] = document.createElement("input"); 
+  resultobj[i] = document.createElement("input"); 
+  document.getElementById("dyn").append(questionobj[i]);
+  document.getElementById("dyn").append(answerobj[i]);
+  document.getElementById("dyn").append(resultobj[i]);
+  answerobj[i].hidden=true;
+  resultobj[i].type="checkbox";
+  resultobj[i].hidden=true;
+  resultobj[i].disabled=true;
+  questionobj[i].style.top=question_top+50*i;
+  answerobj[i].style.top=answer_top+50*i;
+  resultobj[i].style.top=answer_top+50*i;
+  resultobj[i].style.left=600;
+}
+document.getElementById("select").addEventListener("click",function(){
+maximum=document.getElementById("max").value;  
+option=op.value;
+for (i=0;i<10;i++)
+{
+q1[i]=Math.floor(Math.random()*maximum);
+q2[i]=Math.floor(Math.random()*maximum);
+switch(option){
+  case "addition":
+     o=" + ";
+     break;
+  case "subtraction":
+     if (q1[i] < q2[i])
+     {
+      temp=q1[i];
+      q1[i]=q2[i];
+      q2[i]=temp;
+     } 
+     o=" - ";
+     break;
+}
+c=q1[i]+o+q2[i]+" = ";
+console.log(op.value);
+questionobj[i].innerHTML = c;
+answerobj[i].hidden=false;
+resultobj[i].hidden=false;
+
+questionobj[i].style.color = "blue";
+//questionobj[i].style="position:absolute";
+questionobj[i].style.top=question_top+50*i;
+//answerobj[i].style.position=absolute;
+answerobj[i].style.top=answer_top+50*i;
+resultobj[i].style.top=answer_top+50*i;
+op.value="";
+}
+}
+)
+document.getElementById("submit").addEventListener("click",function(){
+for (i=0;i<100;i++)
+{
+var d;
+var e;
+switch(option){
+  case "addition":
+     d=q1[i]+q2[i];
+     break;
+  case "subtraction":
+     d=q1[i]-q2[i]; 
+     break;
+}
+//var d=q1[i]+q2[i];
+if(answerobj[i].value==d)
+{
+  resultobj[i].checked=true;
+}
+else
+{
+resultobj[i].checked=false;
+}
+}
+}
+)
+</script>
+</body>
+</html>
